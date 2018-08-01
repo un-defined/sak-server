@@ -38,7 +38,7 @@ const loggerHelper = (request, debugFlag, log) => {
   proto.init = function () {
     if (this._debugId) { return }
     this
-      .on('request', req => {
+      .on('request', _req => {
         // debug('EVENT REQUEST')
         Object.assign(this._requestParams, {
           debugId: this._debugId,
@@ -64,7 +64,7 @@ const loggerHelper = (request, debugFlag, log) => {
           log('response', this._requestParams)
         }
       })
-      .on('complete', (res, body) => {
+      .on('complete', (res, _body) => {
         // debug('EVENT COMPLETE')
         if (this.callback) {
           Object.assign(this._requestParams, {
