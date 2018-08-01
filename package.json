@@ -21,9 +21,18 @@
     "clean": "ets clean"
   },
   "dependencies": {
+    "@types/debug": "^0.0.30",
+    "@types/lodash": "^4.14.115",
+    "@types/moment": "^2.13.0",
+    "@types/request-promise": "^4.1.42",
+    "debug": "^3.1.0",
     "egg": "^2.6.1",
     "egg-scripts": "^2.6.0",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "is-type-of": "^1.2.0",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.40",
