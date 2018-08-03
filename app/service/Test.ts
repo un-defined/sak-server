@@ -1,4 +1,5 @@
 import { Service } from 'egg';
+import { getClientIp } from "../../lib";
 
 /**
  * Test Service
@@ -10,6 +11,6 @@ export default class Test extends Service {
    * @param name - your name
    */
   public async sayHi(name: string) {
-    return `hi, ${name}`;
+    return `hi, ${name}. From ${getClientIp(this.ctx.req)}`;
   }
 }
