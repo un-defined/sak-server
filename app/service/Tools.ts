@@ -12,7 +12,7 @@ export default class Tools extends Service {
    */
   public async getClientIpDetail(req: any) {
     const clientIp = getClientIp(req);
-    const detail = await this.app.remoteRequest.post('GET_CLIENT_IP_DETAIL', { ip: clientIp }, `Get client's ip detail through taobao.`);
+    const detail = await this.app.remoteRequest.get('GET_CLIENT_IP_DETAIL', { ip: clientIp }, `Get client's ip detail through taobao.`);
     return detail;
   }
 }

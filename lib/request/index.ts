@@ -11,12 +11,12 @@ export class RemoteRequest {
     this.app = app
   }
 
-  async post(url, reqBody, describe): Promise<coreRet> {
+  async get(url, reqBody, describe): Promise<coreRet> {
     let ret
     try {
       ret = await request(this.app).get({
         url: URL[url],
-        body: reqBody,
+        qs: reqBody,
         json: true
       })
     } catch (e) {
