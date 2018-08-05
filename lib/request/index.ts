@@ -1,6 +1,7 @@
 import { request } from './provider'
 import { Application } from 'egg'
 import { RemoteBusinessException, /* BusinessErrorException */ } from '../exceptions'
+import { URL } from '../utils/url'
 
 type coreRet = { retCode: string, retMsg: string, data: any, [propName: string]: any }
 
@@ -10,21 +11,21 @@ export class RemoteRequest {
     this.app = app
   }
 
-  async postFake(url, reqBody, describe): Promise<coreRet> {
+  async post(url, reqBody, describe): Promise<coreRet> {
     let ret
     try {
-      ret = await request(this.app).post({
-        url,
-        body: JSON.stringify(reqBody)
+      ret = await request(this.app).get({
+        url: URL[url],
+        body: reqBody,
+        json: true
       })
-      ret = JSON.parse(ret)
     } catch (e) {
-      throw new RemoteBusinessException(`请求核心系统-${describe} <错误>:${e}`)
+      throw new RemoteBusinessException(`请求外围系统-${describe} <错误>:${e}`)
     }
 
-    if (ret && ret.retCode !== '000000') {
-      this.app.logger.warn(`请求核心系统-${describe} <异常>[${ret.retCode}]:${ret.retMsg}`)
+    if (ret && ret.code !== 0) {
+      this.app.logger.warn(`请求外围系统-${describe} <异常>[${ret.resStatusCode}]:${ret.resBody}`)
     }
-    return ret
+    return ret.data
   }
 }

@@ -1,12 +1,15 @@
 import BaseController from '../base'
 import { Get, Prefix } from '../../../lib';
-import { getClientIp } from 'request-ip';
 
 Prefix('/api/tools', 'ToolsController')
 export default class ToolsController extends BaseController {
+  get SERVICE() {
+    return this.ctx.service.tools
+  }
   
   @Get('/get_client_ip')
-  async test() {
-    this.success(getClientIp(this.ctx.request))
+  async getClientIp() {
+    const detail = await this.SERVICE.getClientIpDetail(this.ctx.request);
+    this.success(detail);
   }
 }
