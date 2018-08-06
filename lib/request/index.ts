@@ -23,9 +23,9 @@ export class RemoteRequest {
       throw new RemoteBusinessException(`请求外围系统-${describe} <错误>:${e}`)
     }
 
-    if (ret && ret.code !== 0) {
-      this.app.logger.warn(`请求外围系统-${describe} <异常>[${ret.resStatusCode}]:${ret.resBody}`)
-    }
-    return ret.data
+    // if (ret && ret.code !== 0) {
+    //   this.app.logger.warn(`请求外围系统-${describe} <异常>[${ret.resStatusCode}]:${ret.resBody}`)
+    // }
+    return ret/* .data */
   }
 }
